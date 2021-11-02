@@ -1,22 +1,35 @@
 #!/bin/sh
 
-START=$(pwd)
 REPO=$1
-TAR_FN=$2
-TMP_DIR=/tmp/${REPO}
+BUILD=$2
 
-echo ${START}
-echo ${REPO}
-echo ${TAR_FN}
-echo ${TMP_DIR}
+TAR_FN=${REPO}.${BUILD}.tar.xz
+INST_DIR=~/${REPO}.${BUILD}
 
-rm -rf ${TMP_DIR}
-mkdir ${TMP_DIR}
-tar -xf /tmp/${TAR_FN} -C ${TMP_DIR}
+if [ -d ${INST_DIR} ]; then
+	echo "## Moving previous installation to: "${INST_DIR}.old
+	if [ -d ${INST_DIR}.old ]; then
+		echo "### "${INST_DIR}".old already exists, deleting..."
+		rm -rf ${INST_DIR}.old
+	fi
+	mv ${INST_DIR} ${INST_DIR}.old
+	echo
+fi
+
+mkdir ${INST_DIR}
+
+echo "## Extracting /tmp/"${TAR_FN}" to "${INST_DIR}
+tar -xf /tmp/${TAR_FN} -C ${INST_DIR}
 echo
 
-rm -rf ${START}/${REPO}
-mv ${TMP_DIR}/* ${TMP_DIR}/.* ${START}
+SERVICE_FILE=${REPO}.${BUILD}.service
+echo "## Copying service file: "${SERVICE_FILE}
+sudo cp ${INST_DIR}/${SERVICE_FILE} /etc/systemd/system/${SERVICE_FILE}
+echo
 
-sudo systemctl restart ${REPO}
+echo "## Reloading service file and restarting service..."
+sudo systemctl daemon-reload
+sudo systemctl enable ${SERVICE_FILE}
+sudo systemctl restart ${SERVICE_FILE}
+echo
 

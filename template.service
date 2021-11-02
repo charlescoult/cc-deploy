@@ -1,0 +1,17 @@
+[Unit]
+Description=Web server for %REPO%.%BUILD%
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ec2-user
+Environment=NODE_VERSION=%NODE_VER%
+Environment=PORT=%PORT%
+WorkingDirectory=/home/ec2-user/%REPO%.%BUILD%
+ExecStart=/home/ec2-user/.nvm/nvm-exec yarn start:%BUILD%
+
+[Install]
+WantedBy=multi-user.target
+
