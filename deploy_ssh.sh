@@ -27,6 +27,10 @@ echo "## Copying service file: "${SERVICE_FILE}
 sudo cp ${INST_DIR}/${SERVICE_FILE} /etc/systemd/system/${SERVICE_FILE}
 echo
 
+echo "## Migrating database..."
+cd ${INST_DIR}
+yarn db:${BUILD}
+
 echo "## Reloading service file and restarting service..."
 sudo systemctl daemon-reload
 sudo systemctl enable ${SERVICE_FILE}
