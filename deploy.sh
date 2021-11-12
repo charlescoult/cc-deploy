@@ -63,7 +63,7 @@ cp ${DOTENV} ${TMP_DIR}/.env
 echo
 
 echo "# Copying client .env file into "${TMP_DIR}"/client"
-cp ${DOTENV} ${TMP_DIR}/client/.env
+cp ${DOTENV_CLIENT} ${TMP_DIR}/client/.env
 echo
 
 echo "# Generating service file..."
