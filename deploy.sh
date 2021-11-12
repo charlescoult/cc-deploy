@@ -12,12 +12,13 @@ fi
 
 . $1
 
-echo "  Repository: "${REPO}
-echo "      Branch: "${BRANCH}
-echo "       Build: "${BUILD}
-echo " Dotenv File: "${DOTENV}
-echo "Node Version: "${NODE_VER}
-echo "        Port: "${PORT}
+echo "        Repository: "${REPO}
+echo "            Branch: "${BRANCH}
+echo "             Build: "${BUILD}
+echo "       Dotenv File: "${DOTENV}
+echo "Client Dotenv File: "${DOTENV_CLIENT}
+echo "      Node Version: "${NODE_VER}
+echo "              Port: "${PORT}
 echo
 echo "SSH connection: "${SSH_STR}
 echo "       SSH key: "${SSH_KEY}
@@ -27,6 +28,7 @@ if [ -z "${REPO}" ] ||
 	[ -z "${BRANCH}" ] || 
 	[ -z "${BUILD}" ] || 
 	[ -z "${DOTENV}" ] || 
+	[ -z "${DOTENV_CLIENT}" ] || 
 	[ -z "${NODE_VER}" ] || 
 	[ -z "${PORT}" ] || 
 	[ -z "${SSH_STR}" ] || 
@@ -38,6 +40,7 @@ export REPO
 export BRANCH
 export BUILD
 export DOTENV
+export DOTENV_CLIENT
 export NODE_VER
 export PORT
 export SSH_STR
@@ -57,6 +60,10 @@ echo
 
 echo "# Copying .env file into "${TMP_DIR}
 cp ${DOTENV} ${TMP_DIR}/.env
+echo
+
+echo "# Copying client .env file into "${TMP_DIR}"/client"
+cp ${DOTENV} ${TMP_DIR}/client/.env
 echo
 
 echo "# Generating service file..."
