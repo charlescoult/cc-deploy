@@ -20,6 +20,7 @@ mkdir ${INST_DIR}
 
 echo "## Extracting /tmp/"${TAR_FN}" to "${INST_DIR}
 tar -xf /tmp/${TAR_FN} -C ${INST_DIR}
+rm /tmp/${TAR_FN}
 echo
 
 SERVICE_FILE=${REPO}.${BUILD}.service
@@ -35,5 +36,7 @@ echo "## Reloading service file and restarting service..."
 sudo systemctl daemon-reload
 sudo systemctl enable ${SERVICE_FILE}
 sudo systemctl restart ${SERVICE_FILE}
+
+rm -rf ${INST_DIR}.old
 echo
 
