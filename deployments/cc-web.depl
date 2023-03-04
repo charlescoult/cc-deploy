@@ -1,0 +1,14 @@
+#!/bin/sh
+
+REPO=cc-web
+BRANCH=main
+BUILD=prod
+NODE_VER=14.18.1
+PORT=8080
+
+DOTENV=~/.env/cc-web.env
+DOTENV_CLIENT=~/.env/cc-web-client.env
+
+SSH_STR=ec2-user@ec2-54-153-119-62.us-west-1.compute.amazonaws.com
+SSH_KEY=~/.ssh/cc-web.pem
+
