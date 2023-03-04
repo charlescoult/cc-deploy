@@ -79,7 +79,8 @@ yarn
 echo
 
 echo "# Building \""${BUILD}"\" client..."
-yarn build:${BUILD}
+# yarn build:${BUILD}
+yarn build
 echo
 
 TAR_FN=${REPO}.${BUILD}.tar.xz

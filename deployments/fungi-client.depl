@@ -1,0 +1,14 @@
+#!/bin/sh
+
+REPO=fungi-client
+BRANCH=main
+BUILD=0.0.1
+NODE_VER=19.6.0
+PORT=8082
+
+DOTENV=./empty.env
+DOTENV_CLIENT=./empty.env
+
+SSH_STR=ec2-user@ec2-54-153-119-62.us-west-1.compute.amazonaws.com
+SSH_KEY=~/.ssh/cc-web.pem
+
