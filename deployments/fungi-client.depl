@@ -1,9 +1,10 @@
 #!/bin/sh
 
-REPO=fungi-client
-BRANCH=main
-BUILD=0.0.1
-NODE_VER=19.6.0
+REPO=ic-serve
+BRANCH=develop
+BUILD=prod
+# NODE_VER=19.6.0
+NODE_VER=14.18.1
 PORT=8082
 
 DOTENV=./empty.env
